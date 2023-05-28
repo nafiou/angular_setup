@@ -1,0 +1,9 @@
+<div class="my-4 border relative rounded-md  shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600 px-3 py-2"
+    [ngClass]="{' border-red-500': error,  'border-gray-300': !error}">
+    <label for="name"
+        class="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 text-xs font-normal text-gray-900">
+        {{ label }}
+    </label>
+    <input [formControlName]="controlName" [readonly]="readOnly" [placeholder]="placeholder" [type]="type" name="name"
+        class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm outline-none text-sm bg-inherit">
+</div>
