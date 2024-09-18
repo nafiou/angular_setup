@@ -1,0 +1,179 @@
+<main class="flex flex-col items-center w-full h-screen bg-gradient-to-t from-green-500">
+  <div class="flex justify-start w-full p-4">
+    <span class="text-red-600 underline">
+      <a routerLink="/">
+        Log in 
+      </a>
+    </span>
+  </div>
+  <div class="flex flex-col items-center justify-center w-1/3 h-full min-w-96rem">
+    <img src="../../../assets/img/QwiK.svg" class="w-32 " />
+    <div class="flex flex-col w-full p-6 mt-4 overflow-y-auto border-2 border-white rounded-3xl h-38rem">
+      <div class="flex flex-col items-center">
+        <span class="inline-block text-red-600 ">
+          Let’s get going!!!
+        </span>
+        <span class="text-sm ">
+          Tell us about yourself
+        </span>
+      </div>
+      <mat-stepper linear>
+        <mat-step [stepControl]="step0Form">
+          <form [formGroup]="step0Form" #formRef="ngForm">
+            {{ step0Form.valid }}
+            <app-input 
+            controlName="firstName" 
+            [error]="step0Form.controls['firstName'].hasError('required') && formRef.submitted"
+            label="First Name:">
+
+            </app-input>
+            <app-input controlName="lastName" 
+            [error]="step0Form.controls['lastName'].hasError('required') && formRef.submitted"
+            label="Last Name:">
+
+            </app-input>
+            <app-input controlName="email" 
+            [error]="step0Form.controls['email'].hasError('required') && formRef.submitted"
+            label="Email">
+
+            </app-input>
+            <app-input controlName="phoneNumber" 
+            [error]="step0Form.controls['phoneNumber'].hasError('required') && formRef.submitted"
+            label="Phone Number:">
+
+            </app-input>
+
+            <app-input controlName="password"
+            [error]="step0Form.controls['password'].hasError('required') && formRef.submitted"
+            label="Create your password">
+
+            </app-input>
+            <div class="flex justify-between mt-4">
+              <app-continue-button type="next"></app-continue-button>
+            </div>
+            
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="step1Form">
+       <form [formGroup]="step1Form">
+            <app-input controlName="legalBusinessName" 
+            [error]="step1Form.controls['legalBusinessName'].hasError('required') && formRef.submitted"
+            label="Nom légal de l’entreprise:">
+
+            </app-input>
+            <app-input controlName="businessName" 
+            [error]="step1Form.controls['businessName'].hasError('required') && formRef.submitted"
+            label="Nom commercial:">
+
+            </app-input>
+            <app-input controlName="legalForm" 
+            [error]="step1Form.controls['legalForm'].hasError('required') && formRef.submitted"
+            label="Forme juridique:">
+
+            </app-input>
+            <app-input controlName="registrationNumber" 
+            [error]="step1Form.controls['registrationNumber'].hasError('required') && formRef.submitted"
+            label="Numéro d’immatriculation:">
+
+            </app-input>
+
+            <app-input controlName="dateOfIncorporation" 
+            [error]="step1Form.controls['dateOfIncorporation'].hasError('required') && formRef.submitted"
+            label="Date de constitution:">
+
+            </app-input>
+            <app-input controlName="headOfficeAddress" 
+            [error]="step1Form.controls['headOfficeAddress'].hasError('required') && formRef.submitted"
+            label="Adresse du siège social:">
+
+            </app-input>
+            <app-input controlName="vatNumber" 
+            [error]="step1Form.controls['vatNumber'].hasError('required') && formRef.submitted"
+            label="Numéro de TVA:">
+
+            </app-input>
+            <div class="flex justify-between ">
+               <app-continue-button type="previous"></app-continue-button>
+               <app-continue-button type="next"></app-continue-button>
+            </div>
+          </form>
+
+        </mat-step>
+        <mat-step [stepControl]="step2Form">
+        <form [formGroup]="step2Form" #form2Ref="ngForm">
+            <app-input controlName="legalRepresentativeName" 
+            [error]="step2Form.controls['legalRepresentativeName'].hasError('required') && form2Ref.submitted"
+            label="Nom légal de Représentant légal:">
+
+            </app-input>
+
+            <app-input controlName="legalRepresentativeTitle" 
+            [error]="step2Form.controls['legalRepresentativeTitle'].hasError('required') && form2Ref.submitted"
+            label="Titre du représentant légal:">
+
+            </app-input>
+            <app-input controlName="legalRepresentativeAddress" 
+            [error]="step2Form.controls['legalRepresentativeAddress'].hasError('required') && form2Ref.submitted"
+            label="Adresse du représentant légal:">
+
+            </app-input>
+
+            <app-input controlName="legalRepresentativePhone"
+            [error]="step2Form.controls['legalRepresentativePhone'].hasError('required') && form2Ref.submitted"
+             label="Numéro de téléphone:">
+
+            </app-input>
+            <app-input controlName="legalRepresentativeEmail" 
+            [error]="step2Form.controls['legalRepresentativeEmail'].hasError('required') && form2Ref.submitted"
+            label="Adresse email du représentant :">
+
+            </app-input>
+
+           
+            <div class="flex justify-between ">
+              <app-continue-button type="previous"></app-continue-button>
+              <app-continue-button type="next"></app-continue-button>
+           </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="step3Form">
+          
+          <form [formGroup]="step3Form" (ngSubmit)="registerUser()" #form3Ref="ngForm">
+            <app-input controlName="annualTurnover" 
+            [error]="step3Form.controls['annualTurnover'].hasError('required') && form3Ref.submitted"
+            label="Nom légal de Représentant légal:">
+
+            </app-input>
+
+            <app-input controlName="bankName" 
+            [error]="step3Form.controls['bankName'].hasError('required') && form3Ref.submitted"
+            label="Titre du représentant légal:">
+
+            </app-input>
+            <app-input controlName="bankDetails" 
+            [error]="step3Form.controls['bankDetails'].hasError('required') && form3Ref.submitted"
+            label="Adresse du représentant légal:">
+
+            </app-input>
+
+            <app-input controlName="iban"
+            [error]="step3Form.controls['iban'].hasError('required') && form3Ref.submitted"
+             label="Numéro de téléphone:">
+
+            </app-input>
+            <app-input controlName="bic" 
+            [error]="step3Form.controls['bic'].hasError('required') && form3Ref.submitted"
+            label="Adresse email du représentant :">
+            </app-input>
+
+            <div class="flex justify-between ">
+              <app-continue-button type="previous"></app-continue-button>
+              <app-button type="submit" label="Save">
+              </app-button>
+           </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  </div>
+</main>

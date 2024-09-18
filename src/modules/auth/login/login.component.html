@@ -1,0 +1,42 @@
+<main class="flex flex-col items-center w-full h-screen bg-gradient-to-t from-green-500">
+  <div class="flex justify-end w-full p-4">
+    <span>
+        Don’t have account yet?
+    </span>
+    <a routerLink="/register">
+      <span class="text-red-500 underline " (click)="register()">
+        Sign up
+    </span>
+    </a>
+  </div>
+  <div class="flex flex-col items-center justify-center h-full w-96">
+    <img src="../../../assets/img/QwiK.svg" class="w-32 "/>
+   <div class="w-full p-6 mt-4 border-2 border-white rounded-3xl">
+      <div class="flex flex-col items-center">
+       <span class="inline-block text-red-600 ">
+        Log in to your account
+       </span>
+       <span class="inline-block py-2">
+        To make the most of your Qwik experience
+       </span>
+      </div>
+      <form [formGroup]="loginForm" #formRef="ngForm">
+       <app-input label="Email" controlName="email" [error]="loginForm.controls['email'].hasError('required') && formRef.submitted"></app-input>
+       <app-input label="Password" controlName="password" [error]="loginForm.controls['password'].hasError('required') && formRef.submitted" type="password"></app-input>
+       <app-button label="Log in" type="submit">
+       </app-button>
+       <div class="flex justify-between py-3 ">
+        <span>
+          Forget your password? 
+        </span>
+        <a routerLink="/register">
+          <span class="text-white underline ">
+            Request a new one
+          </span>
+        </a>
+        
+       </div>
+      </form>
+   </div>
+  </div>
+</main>
