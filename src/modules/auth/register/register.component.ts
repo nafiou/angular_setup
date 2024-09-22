@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { IError } from 'src/_models/models';
+import { AppService } from 'src/services/app.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +14,12 @@ export class RegisterComponent {
     step1Form: FormGroup
     step2Form: FormGroup
     step3Form: FormGroup
-
+    error: string | undefined
+    registered: boolean = false
     constructor(
-      private fb: FormBuilder
+      private fb: FormBuilder,
+      private authService: AuthService,
+      private appservice: AppService
     ){
      
       this.step0Form = this.fb.group({
@@ -55,6 +61,25 @@ export class RegisterComponent {
     registerUser(){
       if(this.step0Form.valid && this.step1Form.valid && this.step2Form.valid && this.step3Form.valid){
         console.log(this.step0Form.value, this.step1Form.value, this.step2Form.value, this.step3Form.value)
+        this.appservice.loader = true
+        this.authService.signup({...this.step0Form.value, ...this.step1Form.value, ...this.step2Form.value, ...this.step3Form.value}).subscribe(
+          {
+            next: (res) => {
+                console.log('request result', res)
+                this.registered = res.statusCode === 201
+            },
+            error: (err: IError) => {
+              if(err.error.statusCode === 400){
+                 this.error = err.error.body
+              }
+              console.log('error', err)
+            },
+          }
+        ).add(
+          () => {
+            this.appservice.loader = false
+          }
+        )
       }
     }
 }

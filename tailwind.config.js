@@ -12,7 +12,7 @@ module.exports = {
       },
       height: {
         '95vh': '95vh',
-        '38rem': '38rem'
+        '38rem': '34rem'
       },
       flex: {
         '4': '4'

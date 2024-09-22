@@ -4,7 +4,7 @@
         Don’t have account yet?
     </span>
     <a routerLink="/register">
-      <span class="text-red-500 underline " (click)="register()">
+      <span class="text-red-500 underline ">
         Sign up
     </span>
     </a>
@@ -20,11 +20,17 @@
         To make the most of your Qwik experience
        </span>
       </div>
-      <form [formGroup]="loginForm" #formRef="ngForm">
+      <form *ngIf="!otpOk" class="flex flex-col " [formGroup]="loginForm" #formRef="ngForm" (ngSubmit)="otp()">
        <app-input label="Email" controlName="email" [error]="loginForm.controls['email'].hasError('required') && formRef.submitted"></app-input>
        <app-input label="Password" controlName="password" [error]="loginForm.controls['password'].hasError('required') && formRef.submitted" type="password"></app-input>
-       <app-button label="Log in" type="submit">
-       </app-button>
+       <app-show-error *ngIf="error">
+        {{ error }}
+       </app-show-error>
+       <div class="flex justify-center mt-4">
+        <app-button label="Log in" type="submit">
+        </app-button>
+       </div>
+      
        <div class="flex justify-between py-3 ">
         <span>
           Forget your password? 
@@ -37,6 +43,23 @@
         
        </div>
       </form>
+      <form *ngIf="otpOk" class="flex flex-col items-center" [formGroup]="otpForm" #otpFormRef="ngForm" (ngSubmit)="login()">
+           <span class="inline-block text-red-500 ">
+            Enter your 2FA code
+           </span>
+           <span class="inline-block mt-2 text-sm text-center">
+            To login, enter your 6-digit two-factor authentication code below.
+           </span>
+           <div class="flex ">
+            <app-small-input controlName="digit1"></app-small-input>
+            <app-small-input controlName="digit2"></app-small-input>
+            <app-small-input controlName="digit3"></app-small-input>
+            <app-small-input controlName="digit4"></app-small-input>
+            <app-small-input controlName="digit5"></app-small-input>
+            <app-small-input controlName="digit6"></app-small-input>
+           </div>
+      </form>
+
    </div>
   </div>
 </main>

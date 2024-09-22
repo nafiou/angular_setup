@@ -1,3 +1,9 @@
 <main class="flex flex-col w-screen h-screen ">
     <router-outlet></router-outlet>
+    <div *ngIf="loader$ | async" class="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full bg-black bg-opacity-50">
+      <ng-lottie width="170px" [options]="options" ></ng-lottie>
+       <span class="p-4 bg-white rounded-lg">
+         Please wait...
+       </span>
+    </div>
 </main>

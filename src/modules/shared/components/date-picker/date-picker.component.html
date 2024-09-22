@@ -1,0 +1,17 @@
+<div class="relative px-3 py-2 rounded-md"
+    [ngClass]="{' border-red-500': error}">
+    <label for="name"
+        class="inline-block px-1 -mt-px text-xs font-normal text-gray-900 left-2">
+        {{ label }}
+    </label>
+    
+        <input
+        [formControlName]="controlName"
+        [ngClass]="{' border-red-500 border': error}"
+        class="block w-full p-2 text-sm text-gray-900 placeholder-gray-500 bg-white border-solid rounded-md outline-none focus:ring-0 sm:text-sm bg-inherit h-9"
+        matInput 
+        [matDatepicker]="picker">
+        <mat-datepicker-toggle class="absolute text-black right-2 top-5" matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    
+</div>

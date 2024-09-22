@@ -20,7 +20,7 @@
       <mat-stepper linear>
         <mat-step [stepControl]="step0Form">
           <form [formGroup]="step0Form" #formRef="ngForm">
-            {{ step0Form.valid }}
+           
             <app-input 
             controlName="firstName" 
             [error]="step0Form.controls['firstName'].hasError('required') && formRef.submitted"
@@ -48,7 +48,7 @@
             label="Create your password">
 
             </app-input>
-            <div class="flex justify-between mt-4">
+            <div class="flex justify-between px-3 mt-4">
               <app-continue-button type="next"></app-continue-button>
             </div>
             
@@ -82,6 +82,10 @@
             label="Date de constitution:">
 
             </app-input>
+            <app-date-picker controlName="dateOfIncorporation" 
+            [error]="step1Form.controls['dateOfIncorporation'].hasError('required') && formRef.submitted"
+            label="Date de constitution:"
+            ></app-date-picker>
             <app-input controlName="headOfficeAddress" 
             [error]="step1Form.controls['headOfficeAddress'].hasError('required') && formRef.submitted"
             label="Adresse du siège social:">
@@ -92,7 +96,7 @@
             label="Numéro de TVA:">
 
             </app-input>
-            <div class="flex justify-between ">
+            <div class="flex justify-between px-3">
                <app-continue-button type="previous"></app-continue-button>
                <app-continue-button type="next"></app-continue-button>
             </div>
@@ -130,7 +134,7 @@
             </app-input>
 
            
-            <div class="flex justify-between ">
+            <div class="flex justify-between px-3">
               <app-continue-button type="previous"></app-continue-button>
               <app-continue-button type="next"></app-continue-button>
            </div>
@@ -139,9 +143,10 @@
         <mat-step [stepControl]="step3Form">
           
           <form [formGroup]="step3Form" (ngSubmit)="registerUser()" #form3Ref="ngForm">
-            <app-input controlName="annualTurnover" 
+            <app-input controlName="annualTurnover"
+            type="number" 
             [error]="step3Form.controls['annualTurnover'].hasError('required') && form3Ref.submitted"
-            label="Nom légal de Représentant légal:">
+            label="Chiffre d'affaire">
 
             </app-input>
 
@@ -166,7 +171,7 @@
             label="Adresse email du représentant :">
             </app-input>
 
-            <div class="flex justify-between ">
+            <div class="flex justify-between px-3">
               <app-continue-button type="previous"></app-continue-button>
               <app-button type="submit" label="Save">
               </app-button>
@@ -174,6 +179,9 @@
           </form>
         </mat-step>
       </mat-stepper>
+      <app-show-error *ngIf="error">
+        {{ error }}
+      </app-show-error>
     </div>
   </div>
 </main>
